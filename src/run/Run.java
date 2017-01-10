@@ -1,7 +1,6 @@
-//Adi Mashiah 205655012
-//Hadar Elmakies 205463573
-package run;
 
+package run;
+//this is our second commit
 import java.io.IOException;
 import java.util.Scanner;
 import commands.CLI;
