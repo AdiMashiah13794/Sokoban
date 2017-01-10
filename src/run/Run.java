@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import commands.CLI;
 import commands.LevelPrinter;
-import commands.MySokobanPolicy;
+import model.policy.MySokobanPolicy;
 
 public class Run {
 

@@ -6,15 +6,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
-import levels.LevelLoader;
-import levels.MyObjectLevelLoader;
-import levels.MyTextLevelLoader;
-import levels.MyXMLLevelLoader;
+
+import model.data.Level;
+import model.data.LevelLoader;
+import model.data.MyObjectLevelLoader;
+import model.data.MyTextLevelLoader;
+import model.data.MyXMLLevelLoader;
+
 
 public class LoadFileCommand implements Command {
 	private HashMap<String, LevelLoader> commands;
 	private String filePath;
-	private levels.Level lev;
+	private Level lev;
 	private String type;
 	public HashMap<String, LevelLoader> getCommands() {
 		return commands;
@@ -29,10 +32,10 @@ public class LoadFileCommand implements Command {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	public levels.Level getLev() {
+	public Level getLev() {
 		return lev;
 	}
-	public void setLev(levels.Level lev) {
+	public void setLev(Level lev) {
 		this.lev = lev;
 	}
 	public String getType() {
@@ -84,7 +87,7 @@ public class LoadFileCommand implements Command {
 		}
 	}
 		
-	private void encoder(String filePath2, levels.Level lev2) {
+	private void encoder(String filePath2, Level lev2) {
 		FileOutputStream os;
 		try {
 			os = new FileOutputStream(filePath2);

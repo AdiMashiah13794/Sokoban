@@ -3,7 +3,8 @@ package commands;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import levels.Level;
+import model.data.Level;
+import model.policy.MySokobanPolicy;
 
 public class CLI {
 	

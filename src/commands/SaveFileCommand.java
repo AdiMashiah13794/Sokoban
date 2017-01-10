@@ -5,11 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
-import levels.Level;
-import levels.LevelSaver;
-import levels.MyObjectLevelSaver;
-import levels.MyTextLevelSaver;
-import levels.MyXMLLevelSaver;
+import model.data.Level;
+import model.data.LevelSaver;
+import model.data.MyObjectLevelSaver;
+import model.data.MyTextLevelSaver;
+import model.data.MyXMLLevelSaver;
+
 
 public class SaveFileCommand implements Command {
 private HashMap<String,LevelSaver> commands;

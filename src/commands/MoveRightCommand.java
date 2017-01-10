@@ -1,7 +1,8 @@
 package commands;
 
-import levels.Level;
-import levels.Player;
+import model.data.Level;
+import model.data.Player;
+import model.policy.MySokobanPolicy;
 
 public class MoveRightCommand implements Command {
 	
