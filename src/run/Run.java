@@ -8,7 +8,7 @@ import commands.LevelPrinter;
 import model.policy.MySokobanPolicy;
 
 public class Run {
-
+//try to ggfgfdfgdf
 	public static void main(String[] args) throws IOException {
 		MySokobanPolicy msp= new MySokobanPolicy();
 		String str;
