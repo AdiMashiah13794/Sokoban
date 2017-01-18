@@ -7,7 +7,7 @@ import model.data.Level;
 import model.policy.MySokobanPolicy;
 
 public class CLI {
-	
+
 	private HashMap<String, Command> commands;
 	private String type;
 	private String fileSavePath;
@@ -25,9 +25,9 @@ public class CLI {
 	private MySokobanPolicy msp;
 	private boolean exitFlag;
 
-	
-	
-	
+
+
+
 	public LoadFileCommand getLoad() {
 		return load;
 	}
@@ -101,7 +101,7 @@ public class CLI {
 		this.lev = lev;
 	}
 	public CLI(String filePath,Printer print,MySokobanPolicy msp) {
-		
+
 		this.msp=msp;
 		this.load =new LoadFileCommand(filePath);
 		this.exitFlag=false;
@@ -123,7 +123,7 @@ public class CLI {
 		commands.put("Move Right",this.right);
 		commands.put("Exit",exit);
 
-		
+
 	}
 	public void invoke(String command){
 		switch (command) {
@@ -131,7 +131,7 @@ public class CLI {
 			this.type="Load";
 			this.load = (LoadFileCommand) commands.get(this.type);
 			commands.get(this.type).execute();
-			
+
 			System.out.println("The level loaded successfully");
 			this.lev=load.getLev();
 			dis.setLev(lev);
@@ -222,12 +222,12 @@ public class CLI {
 			this.exitFlag=this.exit.isFlag();
 			System.out.println("bye bye!");
 			break;
-		default: 
+		default:
 			System.out.println("The command is not found");
 			break;
 		}
-				
-		
+
+
 	}
 	public String getType() {
 		return type;
@@ -259,6 +259,6 @@ public class CLI {
 	public void setExitFlag(boolean exitFlag) {
 		this.exitFlag = exitFlag;
 	}
-	
+
 
 }

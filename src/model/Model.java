@@ -1,6 +1,5 @@
 package model;
 
-import commands.Command;
 import commands.LoadFileCommand;
 import commands.MoveDownCommand;
 import commands.MoveLeftCommand;
@@ -24,6 +23,7 @@ public interface Model  {
 	public void setLeft(MoveLeftCommand left);
 	public MoveRightCommand getRight();
 	public void setRight(MoveRightCommand right);
-	
-		
+	public Level getcCurrentLevel();
+
+
 }

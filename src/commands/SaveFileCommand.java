@@ -12,7 +12,7 @@ import model.data.MyTextLevelSaver;
 import model.data.MyXMLLevelSaver;
 
 
-public class SaveFileCommand implements Command {
+public class SaveFileCommand extends Command {
 private HashMap<String,LevelSaver> commands;
 private String filePath;
 private String type;
@@ -51,7 +51,7 @@ public SaveFileCommand() {
 	commands.put("txt", new MyTextLevelSaver(lev));
 	commands.put("dat", new MyObjectLevelSaver());
 	commands.put("xml", new MyXMLLevelSaver());
-	
+
 }
 public SaveFileCommand(String filePath) {
 	this.commands= new HashMap<>();
@@ -65,7 +65,7 @@ public SaveFileCommand(String filePath) {
 		this.type="dat";
 	if(this.filePath.contains("xml"))
 		this.type="xml";
-	
+
 }
 
 	@Override
@@ -85,7 +85,7 @@ public SaveFileCommand(String filePath) {
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-		
+
 	}
 
 		}

@@ -23,7 +23,11 @@ public class Run {
 		MyController c= new MyController(v,m);
 		v.addObserver(c);
 		m.addObserver(c);
+		//int port=Integer.parseInt(args[1]);
+		//String ip= args[0];
+		c.update(m, "Load");
 		c.start();
+		//c.start(ip,port);
  		System.out.print("> ");
 		 str = s.nextLine();
 	    

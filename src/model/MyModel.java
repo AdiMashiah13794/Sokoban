@@ -21,13 +21,13 @@ public class MyModel extends Observable implements Model   {
 	private MoveLeftCommand left;
 	private MoveRightCommand right;
 	private String filePath;
-	
+
 	public MyModel(String filePath) {
 		this.filePath=filePath;
 		this.load= new LoadFileCommand(this.filePath);
 	}
-	
-	
+
+
 	public Level getLevel() {
 		return level;
 	}
@@ -112,6 +112,13 @@ public class MyModel extends Observable implements Model   {
 		this.level=level;
 	}
 
-	
+
+	@Override
+	public Level getcCurrentLevel() {
+		return this.level;
+
+		}
+
+
 
 }

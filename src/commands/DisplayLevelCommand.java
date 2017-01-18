@@ -2,16 +2,16 @@ package commands;
 
 import model.data.Level;
 
-public class DisplayLevelCommand implements Command {
-	
+public class DisplayLevelCommand extends Command {
+
 	private  Printer p;
 	private Level lev;
-	
+
 	public DisplayLevelCommand(Level lev,Printer p) {
 		this.lev=lev;
 		this.p=p;
-		
-		
+
+
 }
 	public DisplayLevelCommand() {
 	this.lev= null;
@@ -20,7 +20,7 @@ public class DisplayLevelCommand implements Command {
 
 
 
-	
+
 
 	public Level getLev() {
 		return lev;
@@ -33,10 +33,10 @@ public class DisplayLevelCommand implements Command {
 	@Override
 	public void execute() {
 		this.p.print(this.lev);
-		
+
 	}
 
-	
+
 
 
 

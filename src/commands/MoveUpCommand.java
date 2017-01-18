@@ -4,13 +4,13 @@ import model.data.Level;
 import model.data.Player;
 import model.policy.MySokobanPolicy;
 
-public class MoveUpCommand implements Command {
-	
+public class MoveUpCommand extends Command {
+
 	private Level lev;
 	private Player player;
 	private MySokobanPolicy msp;
-	
-	
+
+
 	public Player getPlayer() {
 		return player;
 	}
@@ -28,7 +28,7 @@ public class MoveUpCommand implements Command {
 	}
 	public void setLev(Level lev) {
 		this.lev = lev;
-	
+
 	}
 	public MoveUpCommand(Level lev,Player player,MySokobanPolicy msp) {
 		this.lev=lev;
@@ -42,8 +42,8 @@ public class MoveUpCommand implements Command {
 	@Override
 	public void execute() {
 		this.msp.moveUp(this.lev);
-		
+
 	}
-	
+
 
 }

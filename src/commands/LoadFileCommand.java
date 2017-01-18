@@ -14,7 +14,7 @@ import model.data.MyTextLevelLoader;
 import model.data.MyXMLLevelLoader;
 
 
-public class LoadFileCommand implements Command {
+public class LoadFileCommand extends Command {
 	private HashMap<String, LevelLoader> commands;
 	private String filePath;
 	private Level lev;
@@ -22,7 +22,7 @@ public class LoadFileCommand implements Command {
 	public HashMap<String, LevelLoader> getCommands() {
 		return commands;
 	}
-	
+
 	public void setCommands(HashMap<String, LevelLoader> commands) {
 		this.commands = commands;
 	}
@@ -67,7 +67,7 @@ public class LoadFileCommand implements Command {
 
 
 	}
-	
+
 
 	@Override
 	public void execute() {
@@ -86,7 +86,7 @@ public class LoadFileCommand implements Command {
 			}
 		}
 	}
-		
+
 	private void encoder(String filePath2, Level lev2) {
 		FileOutputStream os;
 		try {
@@ -97,9 +97,9 @@ public class LoadFileCommand implements Command {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
+
 	}
-	
+
 }
 }
-		
+

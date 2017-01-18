@@ -2,12 +2,12 @@ package commands;
 
 import model.data.Level;
 
-public class ExitCommand implements Command {
+public class ExitCommand extends Command {
 	private Level lev;
 	private boolean flag;
 	public ExitCommand(){
 		this.lev=null;
-		
+
 	}
 
 	public boolean isFlag() {
@@ -34,7 +34,8 @@ public class ExitCommand implements Command {
 	@Override
 	public void execute() {
 		this.flag=true;
-		
+
+
 	}
 
 }
