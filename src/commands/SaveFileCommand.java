@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import model.Model;
 import model.data.Level;
 import model.data.LevelSaver;
 import model.data.MyObjectLevelSaver;
@@ -17,6 +18,7 @@ private HashMap<String,LevelSaver> commands;
 private String filePath;
 private String type;
 private Level lev;
+private Model model;
 
 
 public HashMap<String, LevelSaver> getCommands() {
@@ -67,9 +69,29 @@ public SaveFileCommand(String filePath) {
 		this.type="xml";
 
 }
+public SaveFileCommand(Model model){
+	this.model=model;
+	this.commands= new HashMap<>();
+	commands.put("txt", new MyTextLevelSaver());
+	commands.put("dat", new MyObjectLevelSaver());
+	commands.put("xml", new MyXMLLevelSaver());
+	//this.filePath=this.getParams().get(0);
+	//if(this.filePath.contains("txt"))
+	//	this.type="txt";
+	//if(this.filePath.contains("dat"))
+		//this.type="dat";
+	//if(this.filePath.contains("xml"))
+	//	this.type="xml";
+
+}
 
 	@Override
 	public void execute() {
+		this.model.setSave(this);
+		this.model.save();
+	}
+
+	public void save(){
 		if(this.filePath.contains("txt"))
 			this.type="txt";
 		if(this.filePath.contains("dat"))
@@ -79,6 +101,7 @@ public SaveFileCommand(String filePath) {
 		if(commands.containsKey(this.type)){
 			File f= new File(this.filePath);
 			FileOutputStream fis;
+			this.lev=this.model.getLevel();
 			try {
 				fis = new FileOutputStream(f);
 				this.commands.get(this.type).saveLevel(fis,this.lev);
@@ -89,5 +112,6 @@ public SaveFileCommand(String filePath) {
 	}
 
 		}
+
 	}
 }

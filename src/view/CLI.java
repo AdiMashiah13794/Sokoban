@@ -1,39 +1,35 @@
 package view;
 
 import java.util.LinkedList;
-import java.util.Observable;
 import java.util.Scanner;
 
 import commands.DisplayLevelCommand;
 import commands.Printer;
 import common.Common;
-import model.Model;
+
+public class CLI {
+
+	//private  Printer p;
+	private Common c;
 
 
+	//public DisplayLevelCommand getDis() {
+	//	return dis;
+	//}
 
-public class MyView extends Observable implements View  {
+	//public void setDis(DisplayLevelCommand dis) {
+		//this.dis = dis;
+	//}
 
-	private DisplayLevelCommand dis;
-	private  Printer p;
-private Model model;
+	//public Printer getP() {
+	//	return p;
+	//}
 
-	public DisplayLevelCommand getDis() {
-		return dis;
-	}
+	//public void setP(Printer p) {
+	//	this.p = p;
+	//}
 
-	public void setDis(DisplayLevelCommand dis) {
-		this.dis = dis;
-	}
 
-	public Printer getP() {
-		return p;
-	}
-
-	public void setP(Printer p) {
-		this.p = p;
-	}
-
-	@Override
 	public void start() {
 
 		Scanner s= new Scanner(System.in);
@@ -57,8 +53,8 @@ private Model model;
 						params.add(s);
 
 				}
-				setChanged();
-				notifyObservers(params);
+				//להעביר לכאו את סט קיינג ואת נוטיפיי אובסרבס
+
 
 			}
 			}
@@ -66,21 +62,4 @@ private Model model;
 
 	}
 
-	public void display(){
-this.p.print(this.model.getLevel());
-
-	}
-
-	@Override
-	public void getModel(Model model) {
-this.model=model;
-	}
-
-
-
 }
-
-
-
-
-

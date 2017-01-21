@@ -9,14 +9,22 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import commands.Command;
+import commands.DisplayLevelCommand;
+import commands.LevelPrinter;
+import commands.LoadFileCommand;
+import commands.MoveDownCommand;
+import commands.MoveLeftCommand;
+import commands.MoveRightCommand;
+import commands.MoveUpCommand;
+import commands.Printer;
+import commands.SaveFileCommand;
 import model.Model;
+import model.data.Level;
 import view.View;
 
 public class MyController implements Observer  {
-	private BlockingQueue<Command> commandsQueue;
 	private View view;
 	private Model model;
-	boolean stop=false;
 	private HashMap<String, Command>commands;
 	private Controller controller;
 	//private Server server;
@@ -24,24 +32,18 @@ public class MyController implements Observer  {
 
 	public MyController() {
 		commands=new HashMap<String,Command>();
-		commands.put("Load", this.model.getLoad());
-		commands.put("Save", this.model.getSave());
-		commands.put("Move Up",this.model.getUp());
-		commands.put("Move Down",this.model.getDown());
-		commands.put("Move Left",this.model.getLeft());
-		commands.put("Move Right",this.model.getRight());
+		commands.put("Load", new LoadFileCommand(model));
+		commands.put("Save", new SaveFileCommand(model));
+		commands.put("Move Up",new MoveUpCommand(model));
+		commands.put("Move Down",new MoveDownCommand(model));
+		commands.put("Move Left",new MoveLeftCommand(model));
+		commands.put("Move Right",new MoveRightCommand(model));
 
 
 	}
 
 
-public BlockingQueue<Command> getCommandsQueue() {
-		return commandsQueue;
-	}
 
-	public void setCommandsQueue(BlockingQueue<Command> commandsQueue) {
-		this.commandsQueue = commandsQueue;
-	}
 
 	public View getView() {
 		return view;
@@ -62,22 +64,31 @@ public BlockingQueue<Command> getCommandsQueue() {
 public MyController(View view,Model model) {
 	this.view=view;
 	this.model=model;
+
+	this.controller =new Controller();
 	commands=new HashMap<String,Command>();
-	commands.put("Load", this.model.getLoad());
-	commands.put("Save", this.model.getSave());
-	commands.put("Move Up",this.model.getUp());
-	commands.put("Move Down",this.model.getDown());
-	commands.put("Move Left",this.model.getLeft());
-	commands.put("Move Right",this.model.getRight());
-	commandsQueue= new PriorityBlockingQueue<Command>(20);
+	commands.put("Load", new LoadFileCommand(model));
+	commands.put("Save", new SaveFileCommand(model));
+	commands.put("Move Up",new MoveUpCommand(model));
+	commands.put("Move Down",new MoveDownCommand(model));
+	commands.put("Move Left",new MoveLeftCommand(model));
+	commands.put("Move Right",new MoveRightCommand(model));
+	commands.put("display",new DisplayLevelCommand(view));
+	this.view.setP(new LevelPrinter());
+	controller.start();
 }
 
 	@Override
 	public void update(Observable o, Object arg) {
-		LinkedList<String> params=(LinkedList<String>)arg;
+		LinkedList<String> params=(LinkedList<String>) arg;
 		String commandKey= params.removeFirst();
 		Command c=commands.get(commandKey);
+		if(c==null){
+			System.out.println("Error finding "+ commandKey);
+			return;
+		}
 		c.setParams(params);
+
 		controller.insertCommand(c);
 
 
@@ -92,45 +103,12 @@ public MyController(View view,Model model) {
 		}
 
 
-public void insertCommand(Command c){
-	try {
-		commandsQueue.put(c);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-}
 
 
 
-	public void start() {
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				while(stop==false)
-				{
-					try {
-						Command c=commandsQueue.poll(1,TimeUnit.SECONDS);
-						if(c!=null)
-							c.execute();
-
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
-			}
-		}).start();
-	}
 
 
-	public void stop(){
-		stop=true;
 
-
-	}
 	//public void start(String ip,int port){
 		//try {
 		//	Socket theServer = new Socket(ip, port);

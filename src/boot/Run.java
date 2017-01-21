@@ -2,7 +2,6 @@ package boot;
 
 import java.util.Scanner;
 
-import commands.CLI;
 import commands.LevelPrinter;
 import controller.Controller;
 import controller.MyController;
@@ -12,15 +11,26 @@ import view.MyView;
 
 public class Run {
 
-	public static void main(String[] args) {
+	public static void main(String [] args){
+		MyModel model= new MyModel();
+		MyView view= new MyView();
+		view.getModel(model); //לא לשכוח למחוק
+		MyController controller = new MyController(view,model);
+
+		model.addObserver(controller);
+		view.addObserver(controller);
+		view.start();
+	}
+
+	/**public static void main(String[] args) {
 		MySokobanPolicy msp= new MySokobanPolicy();
 		String str;
 		System.out.print("load: ");
 	    Scanner s = new Scanner(System.in);
-	    str = s.nextLine();	
+	    str = s.nextLine();
 		MyView v = new MyView();
 		MyModel m= new MyModel(str);
-		MyController c= new MyController(v,m);
+		Controller c= new Controller(v,m);
 		v.addObserver(c);
 		m.addObserver(c);
 		//int port=Integer.parseInt(args[1]);
@@ -30,10 +40,11 @@ public class Run {
 		//c.start(ip,port);
  		System.out.print("> ");
 		 str = s.nextLine();
-	    
-		s.close();	
+
+		s.close();
 
 
 	}
+	*/
 
 }

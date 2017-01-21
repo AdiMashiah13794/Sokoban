@@ -1,24 +1,24 @@
 package commands;
 
+import common.Common;
 import model.data.Level;
+import view.View;
 
 public class DisplayLevelCommand extends Command {
 
 	private  Printer p;
 	private Level lev;
+	private View v;
+	private Common c;
 
-	public DisplayLevelCommand(Level lev,Printer p) {
-		this.lev=lev;
-		this.p=p;
+	public DisplayLevelCommand(View v) {
+		this.v=v;
 
 
 }
 	public DisplayLevelCommand() {
 	this.lev= null;
 	}
-
-
-
 
 
 
@@ -32,7 +32,7 @@ public class DisplayLevelCommand extends Command {
 
 	@Override
 	public void execute() {
-		this.p.print(this.lev);
+		this.v.display();
 
 	}
 

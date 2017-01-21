@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import model.Model;
 import model.data.Level;
 import model.data.LevelLoader;
 import model.data.MyObjectLevelLoader;
@@ -19,6 +20,9 @@ public class LoadFileCommand extends Command {
 	private String filePath;
 	private Level lev;
 	private String type;
+	private Model model;
+
+
 	public HashMap<String, LevelLoader> getCommands() {
 		return commands;
 	}
@@ -52,18 +56,12 @@ public class LoadFileCommand extends Command {
 
 
 	}
-	public LoadFileCommand(String filePath) {
+	public LoadFileCommand(Model model) {
+		this.model=model;
 		this.commands= new HashMap<>();
 		commands.put("txt", new MyTextLevelLoader());
 		commands.put("dat", new MyObjectLevelLoader());
 		commands.put("xml", new MyXMLLevelLoader());
-		this.filePath=filePath;
-		if(this.filePath.contains("txt"))
-			this.type="txt";
-		if(this.filePath.contains("dat"))
-			this.type="dat";
-		if(this.filePath.contains("xml"))
-			this.type="xml";
 
 
 	}
@@ -71,12 +69,24 @@ public class LoadFileCommand extends Command {
 
 	@Override
 	public void execute() {
+		this.model.setLoad(this);
+		this.model.load();
+
+	}
+
+	public Level load(){
+		if(this.filePath.contains("txt"))
+			this.type="txt";
+		if(this.filePath.contains("dat"))
+			this.type="dat";
+		if(this.filePath.contains("xml"))
+			this.type="xml";
 		if(commands.containsKey(this.type)){
 			File f= new File(this.filePath);
 			FileInputStream fis;
 			try {
 				if(this.type=="xml")
-					encoder(this.filePath, this.lev);
+					encoder(this.filePath, this.model.getLevel());
 				fis = new FileInputStream(f);
 					this.lev=commands.get(this.type).loadLevel(fis);
 
@@ -85,6 +95,8 @@ public class LoadFileCommand extends Command {
 				System.exit(1);
 			}
 		}
+		return this.lev;
+
 	}
 
 	private void encoder(String filePath2, Level lev2) {
