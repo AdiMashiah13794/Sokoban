@@ -1,5 +1,6 @@
 package model.data;
 
+import common.Level;
 
 public interface Move {
 	

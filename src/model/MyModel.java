@@ -11,8 +11,7 @@ import commands.MoveLeftCommand;
 import commands.MoveRightCommand;
 import commands.MoveUpCommand;
 import commands.SaveFileCommand;
-import common.Common;
-import model.data.Level;
+import common.Level;
 import model.policy.MySokobanPolicy;
 
 public class MyModel extends Observable implements Model   {
@@ -24,12 +23,10 @@ public class MyModel extends Observable implements Model   {
 	private MoveDownCommand down= new MoveDownCommand(this);
 	private MoveLeftCommand left= new MoveLeftCommand(this);
 	private MoveRightCommand right= new MoveRightCommand(this);
-	private ExitCommand exit= new ExitCommand();
 	private String filePath;
 	private MySokobanPolicy msp= new MySokobanPolicy();
 	boolean changed=false;
 	LinkedList<String> params= new LinkedList<String>();
-	private Common c;
 
 
 	public void moveLeft(){
@@ -220,9 +217,6 @@ public class MyModel extends Observable implements Model   {
 	}
 
 
-	public Common getCommon() {
-		return c;
-	}
 
 
 
@@ -251,7 +245,7 @@ public class MyModel extends Observable implements Model   {
 		params.add("Exit");
 
 		this.notifyObservers(params);
-		
+
 	}
 
 

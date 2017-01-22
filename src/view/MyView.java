@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import commands.DisplayLevelCommand;
 import commands.Printer;
-import common.Common;
+import common.Level;
 import model.Model;
 
 
@@ -15,7 +15,16 @@ public class MyView extends Observable implements View  {
 
 	private DisplayLevelCommand dis;
 	private  Printer p;
-private Model model;
+	boolean flag;
+	Level level;
+
+	public boolean isFlag() {
+	return flag;
+}
+
+public void setFlag(boolean flag) {
+	this.flag = flag;
+}
 
 	public DisplayLevelCommand getDis() {
 		return dis;
@@ -42,13 +51,18 @@ private Model model;
 
 			@Override
 			public void run() {
-				System.out.println("test");
-				while(true){
+				while(flag==false){
 				System.out.println("Enter the command >");
 				LinkedList<String>params= new LinkedList<String>();
 				String str= s.nextLine();
-				if(str.equals("exit")|| str.equals("Exit"))
-						break;
+				if(str.equals("exit")|| str.equals("Exit")){
+					params.add(str);
+					setChanged();
+					notifyObservers(params);
+					exit();
+
+				}
+
 				if(str.contains("move")||str.contains("Move"))
 					params.add(str);
 				else{
@@ -66,15 +80,25 @@ private Model model;
 
 	}
 
-	public void display(){
-this.p.print(this.model.getLevel());
+	public void display(Level level){
+this.p.print(level);
 
+	}
+
+
+
+	@Override
+	public void stop() {
+this.flag=true;
 	}
 
 	@Override
-	public void getModel(Model model) {
-this.model=model;
+	public void exit() {
+this.flag=true;
+
 	}
+
+
 
 
 

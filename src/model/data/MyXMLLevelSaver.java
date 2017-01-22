@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
+import common.Level;
+
 public class MyXMLLevelSaver implements LevelSaver {
 	Level lev;
 	

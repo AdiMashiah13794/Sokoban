@@ -2,9 +2,9 @@ package model.policy;
 
 
 
+import common.Level;
 import model.data.Box;
 import model.data.Destination;
-import model.data.Level;
 import model.data.Move;
 import model.data.Player;
 import model.data.Position;

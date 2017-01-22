@@ -1,6 +1,6 @@
 package commands;
 
-import model.data.Level;
+import common.Level;
 
 public class LevelPrinter implements Printer {
 

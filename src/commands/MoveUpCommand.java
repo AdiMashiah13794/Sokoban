@@ -1,7 +1,7 @@
 package commands;
 
+import common.Level;
 import model.Model;
-import model.data.Level;
 import model.data.Player;
 import model.policy.MySokobanPolicy;
 

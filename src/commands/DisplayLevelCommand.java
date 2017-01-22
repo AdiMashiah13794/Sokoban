@@ -1,38 +1,31 @@
 package commands;
 
-import common.Common;
-import model.data.Level;
+import common.Level;
+import model.Model;
 import view.View;
 
 public class DisplayLevelCommand extends Command {
 
 	private  Printer p;
-	private Level lev;
-	private View v;
-	private Common c;
 
 	public DisplayLevelCommand(View v) {
-		this.v=v;
+		this.view=v;
 
 
 }
-	public DisplayLevelCommand() {
-	this.lev= null;
+	public DisplayLevelCommand(Model model,View view) {
+		this.model=model;
+		this.view= view;
 	}
 
 
 
-	public Level getLev() {
-		return lev;
-	}
 
-	public void setLev(Level lev) {
-		this.lev = lev;
-	}
 
 	@Override
 	public void execute() {
-		this.v.display();
+
+		this.view.display(this.model.getLevel());
 
 	}
 

@@ -3,8 +3,8 @@ package boot;
 import java.util.Scanner;
 
 import commands.LevelPrinter;
-import controller.Controller;
 import controller.MyController;
+import general.Controller;
 import model.MyModel;
 import model.policy.MySokobanPolicy;
 import view.MyView;
@@ -14,7 +14,6 @@ public class Run {
 	public static void main(String [] args){
 		MyModel model= new MyModel();
 		MyView view= new MyView();
-		view.getModel(model); //לא לשכוח למחוק
 		MyController controller = new MyController(view,model);
 
 		model.addObserver(controller);

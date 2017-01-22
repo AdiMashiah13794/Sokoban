@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import common.Level;
 import model.Model;
-import model.data.Level;
 import model.data.LevelLoader;
 import model.data.MyObjectLevelLoader;
 import model.data.MyTextLevelLoader;
@@ -20,7 +20,6 @@ public class LoadFileCommand extends Command {
 	private String filePath;
 	private Level lev;
 	private String type;
-	private Model model;
 
 
 	public HashMap<String, LevelLoader> getCommands() {

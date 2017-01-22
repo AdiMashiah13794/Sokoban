@@ -1,4 +1,4 @@
-package controller;
+package general;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -12,7 +12,7 @@ import commands.ExitCommand;
 public  class Controller{
 	private BlockingQueue<Command> commandsQueue;
 	boolean stop=false;
-	private Command ExitCommand;
+	private Command ExitCommand= new ExitCommand();
 
 public Controller() {
 	commandsQueue= new ArrayBlockingQueue<Command>(10);
@@ -21,18 +21,24 @@ public Controller() {
 public void start() {
 	new Thread(new Runnable() {
 
-		
+
 		@Override
 		public void run() {
 			while(stop==false)
 			{
 				try {
-					System.out.println("jnfnjsdfjksfdgkgjsjgjk");
 					Command c=commandsQueue.poll(10,TimeUnit.SECONDS);
-					if(c!=null)
-						c.execute();
-					if(c==ExitCommand)
-						stop();
+
+					if(c!=null){
+						if(c.getClass()==ExitCommand.getClass()){
+							c.execute();
+							stop();
+						}
+						else
+							c.execute();
+					}
+
+
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

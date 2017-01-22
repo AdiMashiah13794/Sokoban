@@ -1,7 +1,16 @@
-package model.data;
+package common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import model.data.Box;
+import model.data.ConvertStrToObj;
+import model.data.Destination;
+import model.data.Element;
+import model.data.Player;
+import model.data.Position;
+import model.data.Space;
+import model.data.Wall;
 
 @SuppressWarnings("serial")
 

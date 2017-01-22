@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import common.Level;
 import model.Model;
-import model.data.Level;
 import model.data.LevelSaver;
 import model.data.MyObjectLevelSaver;
 import model.data.MyTextLevelSaver;
@@ -18,7 +18,7 @@ private HashMap<String,LevelSaver> commands;
 private String filePath;
 private String type;
 private Level lev;
-private Model model;
+
 
 
 public HashMap<String, LevelSaver> getCommands() {

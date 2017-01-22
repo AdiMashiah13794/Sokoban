@@ -1,14 +1,23 @@
 package commands;
 
-import model.data.Level;
+import common.Level;
+import view.View;
 
 public class ExitCommand extends Command {
 	private Level lev;
 	private boolean flag;
+
+
+	public ExitCommand(View view){
+		this.lev=null;
+		this.view=view;
+
+	}
 	public ExitCommand(){
 		this.lev=null;
 
 	}
+
 
 	public boolean isFlag() {
 		return flag;
@@ -34,7 +43,6 @@ public class ExitCommand extends Command {
 	@Override
 	public void execute() {
 		this.flag=true;
-
 
 	}
 

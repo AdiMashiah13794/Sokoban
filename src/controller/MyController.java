@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import commands.Command;
 import commands.DisplayLevelCommand;
+import commands.ExitCommand;
 import commands.LevelPrinter;
 import commands.LoadFileCommand;
 import commands.MoveDownCommand;
@@ -18,8 +19,9 @@ import commands.MoveRightCommand;
 import commands.MoveUpCommand;
 import commands.Printer;
 import commands.SaveFileCommand;
+import common.Level;
+import general.Controller;
 import model.Model;
-import model.data.Level;
 import view.View;
 
 public class MyController implements Observer  {
@@ -73,7 +75,8 @@ public MyController(View view,Model model) {
 	commands.put("Move Down",new MoveDownCommand(model));
 	commands.put("Move Left",new MoveLeftCommand(model));
 	commands.put("Move Right",new MoveRightCommand(model));
-	commands.put("display",new DisplayLevelCommand(view));
+	commands.put("display",new DisplayLevelCommand(model,view));
+	commands.put("Exit", new ExitCommand(view));
 	this.view.setP(new LevelPrinter());
 	controller.start();
 }

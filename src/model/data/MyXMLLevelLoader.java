@@ -4,6 +4,8 @@ import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 
+import common.Level;
+
 public class MyXMLLevelLoader implements LevelLoader {
 
 	@SuppressWarnings("resource")

@@ -5,12 +5,10 @@ import java.util.Scanner;
 
 import commands.DisplayLevelCommand;
 import commands.Printer;
-import common.Common;
 
 public class CLI {
 
 	//private  Printer p;
-	private Common c;
 
 
 	//public DisplayLevelCommand getDis() {

@@ -6,8 +6,7 @@ import commands.MoveLeftCommand;
 import commands.MoveRightCommand;
 import commands.MoveUpCommand;
 import commands.SaveFileCommand;
-import common.Common;
-import model.data.Level;
+import common.Level;
 import model.policy.MySokobanPolicy;
 
 public interface Model  {
@@ -28,23 +27,12 @@ public interface Model  {
 	public Level getcCurrentLevel();
 	public MySokobanPolicy getPolicy();
 	public void setPolicy(MySokobanPolicy policy);
-
 	public void moveLeft();
-public void exit();
+	public void exit();
 	public void moveRight();
 	public void moveUp();
-
 	public void moveDown();
 	public void load();
-
 	public void save();
-
-
-
-
-	public boolean isChanged();
-	public void setChanged(boolean changed);
-
-
 
 }

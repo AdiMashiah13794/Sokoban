@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import common.Level;
+
 public class MyTextLevelSaver implements LevelSaver {
 	private Level lev;
 	
